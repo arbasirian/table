@@ -1,6 +1,6 @@
 {
-  "name": "tabulify",
-  "version": "1.1.2",
+  "name": "@peransa/table",
+  "version": "1.0.0",
   "type": "module",
   "description": "A lightweight and customizable React table component.",
   "scripts": {
@@ -18,49 +18,57 @@
     "react",
     "table",
     "component",
-    "tabulify",
+    "peransa",
     "typescript"
   ],
   "author": "Armin Basirian",
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/arbasirian/tabulify.git"
+    "url": "https://github.com/arbasirian/peransa-table.git"
   },
   "bugs": {
-    "url": "https://github.com/arbasirian/tabulify/issues"
+    "url": "https://github.com/arbasirian/peransa-table/issues"
   },
-  "homepage": "https://github.com/arbasirian/tabulify#readme",
+  "homepage": "https://github.com/arbasirian/peransa-table#readme",
   "peerDependencies": {
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0"
   },
   "devDependencies": {
-    "@eslint/js": "^9.15.0",
-    "@rollup/plugin-commonjs": "^28.0.1",
+    "@eslint/js": "^9.39.5",
+    "@rollup/plugin-commonjs": "^29.0.3",
     "@rollup/plugin-json": "^6.1.0",
-    "@rollup/plugin-node-resolve": "^15.3.0",
-    "@rollup/plugin-typescript": "^12.1.1",
-    "@testing-library/jest-dom": "^6.6.3",
-    "@testing-library/react": "^16.0.1",
-    "@types/jest": "^29.5.14",
-    "@types/node": "^22.9.0",
-    "@types/react": "^18.3.12",
-    "@typescript-eslint/eslint-plugin": "^8.15.0",
-    "@typescript-eslint/parser": "^8.15.0",
-    "eslint": "^9.15.0",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-prettier": "^5.2.1",
-    "eslint-plugin-react": "^7.37.2",
-    "jest": "^29.7.0",
-    "jest-environment-jsdom": "^29.7.0",
-    "prettier": "^3.3.3",
-    "rollup": "^4.27.3",
+    "@rollup/plugin-node-resolve": "^16.0.3",
+    "@rollup/plugin-typescript": "^12.3.0",
+    "@testing-library/jest-dom": "^7.0.1",
+    "@testing-library/react": "^16.3.2",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^26.3.0",
+    "@types/react": "^19.2.18",
+    "@typescript-eslint/eslint-plugin": "^8.68.0",
+    "@typescript-eslint/parser": "^8.68.0",
+    "eslint": "^9.39.5",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.6",
+    "eslint-plugin-react": "^7.37.5",
+    "globals": "^17.11.0",
+    "jest": "^30.4.2",
+    "jest-environment-jsdom": "^30.4.1",
+    "prettier": "^3.9.6",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "rollup": "^4.62.5",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-postcss": "^4.0.2",
-    "ts-jest": "^29.2.5",
+    "ts-jest": "^29.4.12",
     "ts-node": "^10.9.2",
-    "typescript": "^5.6.3"
+    "tslib": "^2.8.1",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.68.0"
   },
   "files": [
     "dist/**/*"

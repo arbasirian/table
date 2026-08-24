@@ -16,8 +16,8 @@ export const TableBody = <T,>({
     return (
       <tr className="min-height">
         <td colSpan={columns?.length ?? 1}>
-          <div className="tabulify-loader-wrapper" data-testid="fetching-data">
-            <div className="tabulify-loader" />
+          <div className="peransa-table-loader-wrapper" data-testid="fetching-data">
+            <div className="peransa-table-loader" />
           </div>
         </td>
       </tr>
@@ -27,7 +27,7 @@ export const TableBody = <T,>({
     return (
       <tr className="min-height">
         <td colSpan={columns?.length ?? 1}>
-          <div className="tabulify-no-data" data-testid="no-data">
+          <div className="peransa-table-no-data" data-testid="no-data">
             <IconBrandDatabricks />
             <div>No Data</div>
           </div>
@@ -46,7 +46,7 @@ export const TableBody = <T,>({
       }}
     >
       {rowSelection && (
-        <td className="tabulify-cell" data-id="table-body-row-column">
+        <td className="peransa-table-cell" data-id="table-body-row-column">
           <RowCheckbox
             shouldPrevent
             name={String(record[dataIndex])}
@@ -57,14 +57,14 @@ export const TableBody = <T,>({
       )}
       {columns.map((column) => (
         <td
-          className="tabulify-cell"
+          className="peransa-table-cell"
           key={getUniqueId(column.key)}
           data-id="table-body-row-column"
         >
           {column.render ? (
             column.render(record[column.key], record, index)
           ) : (
-            <>{record[column.key] ?? ''}</>
+            <>{(record[column.key] ?? '') as React.ReactNode}</>
           )}
         </td>
       ))}

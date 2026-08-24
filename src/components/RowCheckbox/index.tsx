@@ -14,7 +14,7 @@ export const RowCheckbox: React.FC<Props> = ({
 }) => {
   return (
     <input
-      className="tabulify-checkbox has-hover"
+      className="peransa-table-checkbox has-hover"
       type="checkbox"
       id={`checkbox-id-${name}`}
       name={`checkbox-name-${name}`}

@@ -71,10 +71,10 @@ const Table = <T,>({
 
   return (
     <div className={className} data-testid={testId}>
-      <div className="tabulify-wrapper">
+      <div className="peransa-table-wrapper">
         <div
           className={cx([
-            'tabulify-container',
+            'peransa-table-container',
             width && 'has-scroll',
             isScrolledToEnd && 'hide-right-shadow',
             !isScrollStarted && 'hide-left-shadow',
@@ -82,11 +82,11 @@ const Table = <T,>({
           ref={containerRef}
           onScroll={handleScroll}
         >
-          <table className="tabulify-table" style={{ width: width ?? '100%' }}>
-            <thead className="tabulify-head">
+          <table className="peransa-table-table" style={{ width: width ?? '100%' }}>
+            <thead className="peransa-table-head">
               <tr>
                 {rowSelection?.selectedRows && (
-                  <th className="tabulify-cell">
+                  <th className="peransa-table-cell">
                     {rowSelection?.onSelectAll && (
                       <RowCheckbox
                         name="select-all"
@@ -99,7 +99,7 @@ const Table = <T,>({
                 {columns.map((column) => (
                   <th
                     className={cx([
-                      'tabulify-cell',
+                      'peransa-table-cell',
                       Boolean(sort) && 'has-hover',
                     ])}
                     key={getUniqueId(column.key)}
@@ -107,7 +107,7 @@ const Table = <T,>({
                     onClick={() => sort?.onSort(column.key)}
                   >
                     <div
-                      className="tabulify-head-cell-content-wrapper"
+                      className="peransa-table-head-cell-content-wrapper"
                       data-id="table-head-row-column"
                     >
                       <div>{column.title}</div>
@@ -121,7 +121,7 @@ const Table = <T,>({
                 ))}
               </tr>
             </thead>
-            <tbody className="tabulify-body">
+            <tbody className="peransa-table-body">
               <TableBody
                 paginatedData={paginatedData}
                 dataIndex={dataIndex}
@@ -135,7 +135,7 @@ const Table = <T,>({
         </div>
       </div>
       {pagination && (
-        <div className="tabulify-pagination-wrapper">
+        <div className="peransa-table-pagination-wrapper">
           <Pagination
             currentPage={currentPage}
             onPageChange={handlePageChange}

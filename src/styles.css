@@ -1,14 +1,14 @@
-.tabulify-wrapper {
+.peransa-table-wrapper {
   transform: translate(0);
 }
-.tabulify-container {
+.peransa-table-container {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch; /* Smooth scrolling for iOS */
   position: relative;
 }
 
-.tabulify-container.has-scroll::after,
-.tabulify-container.has-scroll::before {
+.peransa-table-container.has-scroll::after,
+.peransa-table-container.has-scroll::before {
   content: '';
   display: block;
   position: fixed;
@@ -18,25 +18,25 @@
   width: 6px;
   pointer-events: none;
 }
-.tabulify-container::before {
+.peransa-table-container::before {
   background: linear-gradient(to right, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0));
   transition: background 0.3s ease;
 }
-.tabulify-container::after {
+.peransa-table-container::after {
   right: 0;
   background: linear-gradient(to left, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0));
   transition: background 0.3s ease;
 }
-.tabulify-container.hide-right-shadow::after,
-.tabulify-container.hide-left-shadow::before {
+.peransa-table-container.hide-right-shadow::after,
+.peransa-table-container.hide-left-shadow::before {
   background: transparent;
 }
 
-.tabulify-container .no-shadow {
+.peransa-table-container .no-shadow {
   box-shadow: inset 0 0 0 0 rgba(0, 0, 0, 0.1); /* No right shadow when at end */
 }
 
-.tabulify-table {
+.peransa-table-table {
   width: 100%;
   min-width: 100%;
   text-align: start;
@@ -44,7 +44,7 @@
   border-collapse: separate;
   border-spacing: 0;
 }
-.tabulify-table::after {
+.peransa-table-table::after {
   right: 0;
   background-image: linear-gradient(
     to left,
@@ -53,7 +53,7 @@
   );
 }
 
-.tabulify-head tr th {
+.peransa-table-head tr th {
   position: relative;
   color: rgba(0, 0, 0, 0.88);
   font-weight: 600;
@@ -63,29 +63,29 @@
   transition: background 0.2s ease;
 }
 
-.tabulify-body tr td {
+.peransa-table-body tr td {
   transition:
     background 0.2s,
     border-color 0.2s;
   border-bottom: 1px solid #f0f0f0;
 }
 
-.tabulify-body tr:hover {
+.peransa-table-body tr:hover {
   background: #fafafa;
 }
 
-.tabulify-cell {
+.peransa-table-cell {
   position: relative;
   padding: 16px;
   overflow-wrap: break-word;
 }
-.tabulify-head-cell-content-wrapper {
+.peransa-table-head-cell-content-wrapper {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.tabulify-head-cell-content-wrapper .icon-wrapper {
+.peransa-table-head-cell-content-wrapper .icon-wrapper {
   width: 16px;
   height: 16px;
   display: flex;
@@ -93,14 +93,14 @@
   justify-content: center;
 }
 
-.tabulify-pagination-wrapper {
+.peransa-table-pagination-wrapper {
   display: flex;
   justify-content: flex-end;
   gap: 8px;
   margin-top: 24px;
 }
 
-.tabulify-pagination button {
+.peransa-table-pagination button {
   border: none;
   background-color: transparent;
   padding: 4px 12px;
@@ -108,16 +108,16 @@
   color: rgba(0, 0, 0, 0.88);
 }
 
-.tabulify-pagination button:hover {
+.peransa-table-pagination button:hover {
   cursor: pointer;
   background: #fafafa;
 }
 
-.tabulify-pagination button.active {
+.peransa-table-pagination button.active {
   border: 1px solid;
 }
 
-.tabulify-body .tabulify-no-data {
+.peransa-table-body .peransa-table-no-data {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -126,7 +126,7 @@
   height: 400px;
 }
 
-.tabulify-body .tabulify-loader-wrapper {
+.peransa-table-body .peransa-table-loader-wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -134,7 +134,7 @@
   height: 400px;
 }
 
-.tabulify-loader {
+.peransa-table-loader {
   width: 48px;
   height: 48px;
   border: 5px solid rgba(0, 0, 0, 0.88);

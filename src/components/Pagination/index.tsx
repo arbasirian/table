@@ -16,7 +16,7 @@ const Pagination: React.FC<PaginationProps> = ({
   const totalPages = Math.ceil(total / pageSize);
 
   return (
-    <div className="tabulify-pagination">
+    <div className="peransa-table-pagination">
       {[...Array(totalPages)].map((_, i) => (
         <button
           key={i}
