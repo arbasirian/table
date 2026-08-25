@@ -28,12 +28,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/arbasirian/peransa-table.git"
+    "url": "https://github.com/arbasirian/table.git"
   },
   "bugs": {
-    "url": "https://github.com/arbasirian/peransa-table/issues"
+    "url": "https://github.com/arbasirian/table/issues"
   },
-  "homepage": "https://github.com/arbasirian/peransa-table#readme",
+  "homepage": "https://github.com/arbasirian/table#readme",
   "peerDependencies": {
     "react": "^18.0.0 || ^19.0.0",
     "react-dom": "^18.0.0 || ^19.0.0"
