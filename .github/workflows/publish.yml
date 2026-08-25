@@ -6,7 +6,7 @@ on:
 
 permissions:
   contents: write # to push the version tag and create a GitHub release
-  id-token: write # for npm provenance
+  id-token: write # required for npm Trusted Publishing (OIDC) and provenance
 
 jobs:
   publish:
@@ -23,6 +23,9 @@ jobs:
           registry-url: https://registry.npmjs.org
           cache: npm
           cache-dependency-path: package-lock.json
+
+      - name: Update npm (Trusted Publishing requires npm >= 11.5.1)
+        run: npm install -g npm@latest
 
       - name: Install dependencies
         run: npm install
@@ -58,8 +61,9 @@ jobs:
 
       - name: Publish to npm
         if: steps.version.outputs.should_publish == 'true'
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }} # npm Automation token, set in repo Settings > Secrets and variables > Actions
+        # Authenticates via npm Trusted Publishing (OIDC) - configure this repo/workflow
+        # as a trusted publisher for the package at npmjs.com > package > Settings.
+        # No NPM_TOKEN secret needed.
         run: npm publish --access public --provenance
 
       - name: Tag release commit
