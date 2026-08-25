@@ -53,6 +53,7 @@ jobs:
           PUBLISHED=$(npm view "$NAME" version 2>/dev/null || echo "none")
           echo "name=$NAME" >> "$GITHUB_OUTPUT"
           echo "local=$LOCAL" >> "$GITHUB_OUTPUT"
+          echo "tag=table-v$LOCAL" >> "$GITHUB_OUTPUT"
           if [ "$LOCAL" != "$PUBLISHED" ]; then
             echo "should_publish=true" >> "$GITHUB_OUTPUT"
           else
@@ -71,15 +72,20 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git tag "v${{ steps.version.outputs.local }}"
-          git push origin "v${{ steps.version.outputs.local }}"
+          TAG="${{ steps.version.outputs.tag }}"
+          if git ls-remote --exit-code --tags origin "refs/tags/$TAG" >/dev/null 2>&1; then
+            echo "Tag $TAG already exists on origin, skipping"
+          else
+            git tag "$TAG"
+            git push origin "$TAG"
+          fi
 
       - name: Create GitHub Release
         if: steps.version.outputs.should_publish == 'true'
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: v${{ steps.version.outputs.local }}
-          name: Release v${{ steps.version.outputs.local }}
+          tag_name: ${{ steps.version.outputs.tag }}
+          name: Release ${{ steps.version.outputs.tag }}
           draft: false
           prerelease: false
           files: |
