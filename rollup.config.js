@@ -22,7 +22,7 @@ export default {
       tsconfig: './tsconfig.json', // Use your updated tsconfig.json
     }),
     postcss({
-      extract: true, // Extract CSS to a separate file
+      extract: 'index.css', // Extract CSS to a single fixed-name file, shared by both cjs and esm outputs
       minimize: true, // Minify the CSS
     }),
   ],

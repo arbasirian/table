@@ -48,14 +48,14 @@ pnpm add @peransa/table
 The component ships its CSS separately from the JS bundle, so import it once (e.g. in your app's entry point):
 
 ```ts
-import '@peransa/table/dist/index.esm.css';
+import '@peransa/table/dist/index.css';
 ```
 
 ## Quick Start
 
 ```tsx
 import { Table, Column } from '@peransa/table';
-import '@peransa/table/dist/index.esm.css';
+import '@peransa/table/dist/index.css';
 
 interface User {
   id: number;
