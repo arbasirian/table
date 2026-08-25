@@ -1,0 +1,42 @@
+name: Security
+
+on:
+  schedule:
+    - cron: "0 0 * * 0" # Sundays 00:00 UTC
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  security:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Audit (moderate+)
+        run: npm audit --audit-level=moderate
+
+      - name: Outdated deps (non-blocking)
+        run: npm outdated || true
+
+      - name: Upload audit artifacts on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: security-report
+          path: |
+            package-lock.json
+            npm-debug.log*
+          retention-days: 30

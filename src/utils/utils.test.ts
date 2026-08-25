@@ -3,15 +3,18 @@ import { cx, sortData } from '.';
 
 describe('cx util', () => {
   it('return valid classes', () => {
+    // eslint-disable-next-line no-constant-binary-expression -- literal booleans intentionally simulate conditional class names
     const classNames = ['table', false && 'show', true && 'hide'];
     expect(cx(classNames)).toEqual('table hide');
   });
   it('return one class', () => {
+    // eslint-disable-next-line no-constant-binary-expression -- literal booleans intentionally simulate conditional class names
     const classNames = [false && 'table', false && 'show', true && 'hide'];
     expect(cx(classNames)).toEqual('hide');
   });
 
   it('return no class', () => {
+    // eslint-disable-next-line no-constant-binary-expression -- literal booleans intentionally simulate conditional class names
     const classNames = [false && 'table', false && 'show', false && 'hide'];
     expect(cx(classNames)).toEqual('');
   });
@@ -112,6 +115,7 @@ describe('sortData util', () => {
     test('returns original data when sortBy is missing', () => {
       const result = sortData({
         dataSource: testData,
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any -- intentionally passing an invalid type to test missing-arg handling
         sortBy: null as any,
       });
 
@@ -122,6 +126,7 @@ describe('sortData util', () => {
       const result = sortData({
         dataSource: testData,
         sortBy: 'name',
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any -- intentionally passing an invalid type to test missing-arg handling
         sortOrder: null as any,
       });
 

@@ -12,6 +12,8 @@
     "test:coverage": "jest --coverage",
     "lint": "eslint . --quiet",
     "lint:fix": "eslint . --fix",
+    "type-check": "tsc --noEmit",
+    "size": "npm run build && node -e \"console.log('Bundle sizes:'); console.log('CJS:', require('fs').statSync('dist/index.cjs.js').size + ' bytes'); console.log('ESM:', require('fs').statSync('dist/index.esm.js').size + ' bytes'); console.log('CSS:', require('fs').statSync('dist/index.css').size + ' bytes');\"",
     "release": "npm version patch && git push origin main --follow-tags && npm publish"
   },
   "keywords": [

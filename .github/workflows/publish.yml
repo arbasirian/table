@@ -1,0 +1,82 @@
+name: Publish to npm
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write # to push the version tag and create a GitHub release
+  id-token: write # for npm provenance
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: https://registry.npmjs.org
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Type check
+        run: npm run type-check
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Test
+        run: npm test
+
+      - name: Build
+        run: npm run build
+
+      - name: Check bundle size
+        run: npm run size
+
+      - name: Check if version needs publishing
+        id: version
+        run: |
+          NAME=$(node -p "require('./package.json').name")
+          LOCAL=$(node -p "require('./package.json').version")
+          PUBLISHED=$(npm view "$NAME" version 2>/dev/null || echo "none")
+          echo "name=$NAME" >> "$GITHUB_OUTPUT"
+          echo "local=$LOCAL" >> "$GITHUB_OUTPUT"
+          if [ "$LOCAL" != "$PUBLISHED" ]; then
+            echo "should_publish=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "should_publish=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Publish to npm
+        if: steps.version.outputs.should_publish == 'true'
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }} # npm Automation token, set in repo Settings > Secrets and variables > Actions
+        run: npm publish --access public --provenance
+
+      - name: Tag release commit
+        if: steps.version.outputs.should_publish == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git tag "v${{ steps.version.outputs.local }}"
+          git push origin "v${{ steps.version.outputs.local }}"
+
+      - name: Create GitHub Release
+        if: steps.version.outputs.should_publish == 'true'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ steps.version.outputs.local }}
+          name: Release v${{ steps.version.outputs.local }}
+          draft: false
+          prerelease: false
+          files: |
+            dist/**
