@@ -25,7 +25,7 @@ jobs:
           cache-dependency-path: package-lock.json
 
       - name: Update npm (Trusted Publishing requires npm >= 11.5.1)
-        run: npm install -g npm@latest
+        run: npm install -g npm@11 # npm@latest now requires Node 22+; npm 11.x still supports Node 20
 
       - name: Install dependencies
         run: npm install
